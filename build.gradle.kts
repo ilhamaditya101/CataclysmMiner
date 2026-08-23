@@ -2,23 +2,38 @@ plugins {
     java
 }
 
-group = "id.example.cataclysmminer"
+group = "com.cataclysmminer"
 version = "1.0.0"
 
 repositories {
     mavenCentral()
-    maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://repo.aurelium.dev/repository/maven-public/")
-    maven("https://nexus.phoenixdevt.fr/repository/maven-public/")
+
+    maven {
+        name = "papermc"
+        url = uri("https://repo.papermc.io/repository/maven-public/")
+    }
+
+    maven {
+        name = "aurelium"
+        url = uri("https://repo.aurelium.dev/repository/maven-public/")
+    }
+
+    maven {
+        name = "phoenix"
+        url = uri("https://nexus.phoenixdevt.fr/repository/maven-public/")
+    }
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+
     compileOnly("dev.aurelium:auraskills-api-bukkit:2.2.0")
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 tasks.withType<JavaCompile>().configureEach {
