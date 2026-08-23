@@ -23,5 +23,5 @@ tasks.withType<JavaCompile>().configureEach {
 }
 
 tasks.jar {
-    archiveBaseName.set("CataclysmMiner")
+    archiveFileName.set("CataclysmMiner.jar")
 }
