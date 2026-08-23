@@ -1,20 +1,32 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
-        maven("https://repo.papermc.io/repository/maven-public/")
-        maven("https://repo.aurelium.dev/repository/maven-public/")
-        maven("https://nexus.phoenixdevt.fr/repository/maven-public/")
     }
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+
     repositories {
         mavenCentral()
-        maven("https://repo.papermc.io/repository/maven-public/")
-        maven("https://repo.aurelium.dev/repository/maven-public/")
-        maven("https://nexus.phoenixdevt.fr/repository/maven-public/")
+
+        maven {
+            name = "papermc"
+            url = uri("https://repo.papermc.io/repository/maven-public/")
+        }
+
+        maven {
+            name = "aurelium"
+            url = uri("https://repo.aurelium.dev/repository/maven-public/")
+        }
+
+        maven {
+            name = "phoenix"
+            url = uri("https://nexus.phoenixdevt.fr/repository/maven-public/")
+        }
     }
 }
 
