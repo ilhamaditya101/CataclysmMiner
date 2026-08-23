@@ -1,46 +1,33 @@
-plugins {
-    java
-}
+import org.gradle.api.initialization.resolve.RepositoriesMode
 
-group = "com.cataclysmminer"
-version = "1.0.0"
-
-repositories {
-    mavenCentral()
-
-    maven {
-        name = "papermc"
-        url = uri("https://repo.papermc.io/repository/maven-public/")
-    }
-
-    maven {
-        name = "aurelium"
-        url = uri("https://repo.aurelium.dev/repository/maven-public/")
-    }
-
-    maven {
-        name = "phoenix"
-        url = uri("https://nexus.phoenixdevt.fr/repository/maven-public/")
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
     }
 }
 
-dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 
-    compileOnly("dev.aurelium:auraskills-api-bukkit:2.2.0")
-}
+    repositories {
+        mavenCentral()
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        maven {
+            name = "papermc"
+            url = uri("https://repo.papermc.io/repository/maven-public/")
+        }
+
+        maven {
+            name = "aurelium"
+            url = uri("https://repo.aurelium.dev/repository/maven-public/")
+        }
+
+        maven {
+            name = "phoenix"
+            url = uri("https://nexus.phoenixdevt.fr/repository/maven-public/")
+        }
     }
 }
 
-tasks.withType<JavaCompile>().configureEach {
-    options.encoding = "UTF-8"
-    options.release.set(17)
-}
-
-tasks.jar {
-    archiveBaseName.set("CataclysmMiner")
-}
+rootProject.name = "CataclysmMiner"
