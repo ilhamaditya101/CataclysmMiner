@@ -1,0 +1,21 @@
+name: CataclysmMiner
+version: 1.0.0
+main: id.example.cataclysmminer.CataclysmMiner
+api-version: '1.20'
+author: YourName
+description: Global per-coordinate mining nodes with AuraSkills Mining XP and Vanilla/MMOItems rewards.
+depend:
+  - AuraSkills
+softdepend:
+  - MMOItems
+
+commands:
+  cataclysmminer:
+    description: CataclysmMiner administration command
+    usage: /cataclysmminer reload
+    permission: cataclysmminer.admin
+
+permissions:
+  cataclysmminer.admin:
+    description: Allows reloading CataclysmMiner
+    default: op

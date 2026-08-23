@@ -1,0 +1,105 @@
+# ============================================================
+# CataclysmMiner - Paper 1.20.1
+# ============================================================
+#
+# Only worlds listed in allowed-worlds are processed.
+# All other worlds are completely untouched.
+#
+# Every configured coordinate has its OWN GLOBAL cooldown.
+# Cooldown is shared by all players, not per-player.
+#
+# Reward modes:
+#   VANILLA
+#   MMOITEMS
+#
+# MMOItems:
+#   type: ORE
+#   id: YOUR_ITEM_ID
+#
+# AuraSkills:
+#   mining-xp = XP sent to the AuraSkills Mining skill.
+# ============================================================
+
+settings:
+  allowed-worlds:
+    - world
+    - mining_world
+
+  cooldown-message: "&cOre ini sedang cooldown."
+  reward-message: "&aMining berhasil! &f{reward} &7| &e+{xp} Mining XP"
+  no-reward-message: "&aMining berhasil! &e+{xp} Mining XP"
+
+  suppress-vanilla-drops: true
+
+  # true = restore only if the block is still BEDROCK.
+  # This prevents overwriting a block changed by another plugin/player.
+  safe-restore: true
+
+ores:
+  ore_a:
+    world: mining_world
+    x: 100
+    y: 64
+    z: 100
+
+    # Original ore block / block to restore after cooldown.
+    block: DIAMOND_ORE
+
+    cooldown-seconds: 15
+
+    # AuraSkills Mining skill XP.
+    mining-xp: 500
+
+    rewards:
+      - mode: VANILLA
+        material: DIAMOND
+        min-amount: 1
+        max-amount: 3
+        chance: 100.0
+
+      - mode: VANILLA
+        material: EMERALD
+        min-amount: 1
+        max-amount: 2
+        chance: 25.0
+
+      # Example MMOItems:
+      # - mode: MMOITEMS
+      #   type: ORE
+      #   id: RICH_DIAMOND
+      #   min-amount: 1
+      #   max-amount: 2
+      #   chance: 10.0
+
+  ore_b:
+    world: mining_world
+    x: 101
+    y: 64
+    z: 100
+    block: GOLD_ORE
+    cooldown-seconds: 15
+    mining-xp: 500
+
+    rewards:
+      - mode: VANILLA
+        material: GOLD_INGOT
+        min-amount: 1
+        max-amount: 2
+        chance: 100.0
+
+  ore_c:
+    world: mining_world
+    x: 102
+    y: 64
+    z: 100
+    block: IRON_ORE
+    cooldown-seconds: 15
+    mining-xp: 500
+
+    rewards:
+      - mode: MMOITEMS
+        type: ORE
+        id: RICH_IRON
+        min-amount: 1
+        max-amount: 2
+        chance: 100.0
