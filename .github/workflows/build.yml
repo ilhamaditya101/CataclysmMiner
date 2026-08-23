@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - "**"
+
   pull_request:
+
   workflow_dispatch:
 
 permissions:
@@ -24,23 +26,25 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-          cache: gradle
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+      - name: Setup Gradle 8.8
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: "8.8"
 
-      - name: Make Gradle executable
-        run: chmod +x gradlew
-
-      - name: Build
-        run: ./gradlew clean build --no-daemon
-
-      - name: Verify JAR
-        shell: bash
+      - name: Show Java and Gradle
         run: |
+          java -version
+          gradle --version
+
+      - name: Build CataclysmMiner
+        run: gradle clean build --no-daemon
+
+      - name: Check JAR
+        run: |
+          echo "Checking build/libs..."
+          ls -lah build/libs/
           test -f build/libs/CataclysmMiner.jar
-          echo "Build OK:"
-          ls -lh build/libs/CataclysmMiner.jar
 
       - name: Upload CataclysmMiner.jar
         uses: actions/upload-artifact@v4
